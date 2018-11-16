@@ -356,7 +356,8 @@ namespace NHibernate.Extensions.Linq
             if (metas.Count > 1)
                 throw new HibernateException($"There are more than one metadata for type '{Type}'");
 
-            var meta = metas.First();
+            var meta = metas.Count == 1 ? metas.First() : metas.First(x => x.MappedClass == Type);
+
             var paths = path.Split('.');
             var index = 0;
             foreach (var propName in paths)
