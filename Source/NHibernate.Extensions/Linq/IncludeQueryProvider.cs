@@ -353,8 +353,6 @@ namespace NHibernate.Extensions.Linq
                 .ToList();
             if (!metas.Any())
                 throw new HibernateException($"Metadata for type '{Type}' was not found");
-            if (metas.Count > 1)
-                throw new HibernateException($"There are more than one metadata for type '{Type}'");
 
             var meta = metas.Count == 1 ? metas.First() : metas.First(x => x.MappedClass == Type);
 
